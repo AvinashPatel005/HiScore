@@ -19,6 +19,8 @@ public class PlayerShip {
     private int speed = 0;
     private boolean boosting;
 
+    public int score=0;
+
     public PlayerShip(Context context,int screenX,int screenY) {
         x=50;
         y=50;
@@ -32,24 +34,26 @@ public class PlayerShip {
 
     public void update(){
         if(boosting){
-            speed +=2;
+            speed +=6;
+            score+=10;
+
         }else{
             speed-=5;
         }
-
+        score+=2;
         if(speed>MAX_SPEED){
             speed = MAX_SPEED;
         }
         if(speed<MIN_SPEED){
             speed = MIN_SPEED;
         }
-        y -= speed+GRAVITY;
-
-        if(y<minY){
-            y=minY;
+        //y -= speed+GRAVITY;
+        x +=speed+GRAVITY;
+        if(x<0){
+            x=0;
         }
-        if (y>maxY){
-            y=maxY;
+        if (x>500){
+            x=500;
         }
     }
 
