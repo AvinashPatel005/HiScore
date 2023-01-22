@@ -100,7 +100,8 @@ public class TDView extends SurfaceView implements Runnable {
         playing =false;
         try{
             gameThread.join();
-        }catch (InterruptedException e){
+        }
+        catch (InterruptedException e){
         }
     }
     public void resume(){

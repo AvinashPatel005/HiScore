@@ -12,14 +12,15 @@ public class PlayerShip {
     private final int GRAVITY = -22;
 
     private int maxY,minY;
-
-    private final int MIN_SPEED=1,MAX_SPEED=50;
+    public int score=0;
+    private  int MIN_SPEED,MAX_SPEED;
     private Bitmap bitmap;
     private int x,y;
     private int speed = 0;
     private boolean boosting;
+    private int i=1;
 
-    public int score=0;
+
 
     public PlayerShip(Context context,int screenX,int screenY) {
         x=50;
@@ -33,28 +34,23 @@ public class PlayerShip {
     }
 
     public void update(){
-        if(boosting){
-            speed +=6;
-            score+=10;
 
-        }else{
-            speed-=5;
+        if(boosting){
+            i = i+10;
+            speed = speed+10;
+            if(speed>100) speed = 50;
+            x=x+10;
+            if(x>200) x=200;
         }
-        score+=2;
-        if(speed>MAX_SPEED){
-            speed = MAX_SPEED;
+        else{
+            i++;
+            speed = i/100;
+            x=x-10;
+            if(x<0) x=0;
         }
-        if(speed<MIN_SPEED){
-            speed = MIN_SPEED;
-        }
-        //y -= speed+GRAVITY;
-        x +=speed+GRAVITY;
-        if(x<0){
-            x=0;
-        }
-        if (x>500){
-            x=500;
-        }
+       score=i;
+
+
     }
 
     public Bitmap getBitmap() {
